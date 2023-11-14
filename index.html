@@ -1,0 +1,1111 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Reveal JS presentation</title>
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <!-- highlight Theme -->
+  
+  <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/monokai.min.css">
+  
+	
+		
+	<link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/chalkboard/style.css">
+	
+	
+	
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/customcontrols/style.css">
+  
+	
+
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/theme/night.css" id="theme">
+  
+  
+
+  <link rel="stylesheet" href="libs/styles/tasklist.css">
+	<link rel="stylesheet" href="libs/styles/iota.css">
+	<link rel="stylesheet" href="libs/styles/layout.css">
+
+
+  <!-- Revealjs Theme -->
+  
+
+   <!-- css list -->
+	
+
+   
+
+</head>
+
+<body>
+
+   
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      
+
+
+    
+        <section >
+            
+            <h3>Mathematical Optimization</h3>
+<h4 class="fragment strike">A bird’s eye overview</h4>
+<h4 class="fragment fade-in">A very short, very opinionated selection of topics</h4>
+<p>Diego Sandoval</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><code>whoami</code>?</h3>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>What is optimization?</h3>
+<blockquote class="fragment" style="display:flex">
+<span style="font-size:5em;color:#7a7a7a;font-family: Georgia, serif;">&ldquo;</span>
+<span style="padding-top:50px;">Optimization is what you (want/try to) do with your salary at the end of the month.</span>
+<!-- <span style="font-size:5em;color:#7a7a7a;font-family: Georgia, serif;">&rdquo;</span> -->
+</blockquote> 
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>An intuition</h3>
+<p>Best possible [under constraints]</p>
+<div class="r-stack">
+  <img class="fragment" src="./figures/opt-investment.png">
+  <img class="fragment" src="./figures/opt-time.png">
+  <img class="fragment" src="./figures/opt-longevity.png">
+  <img class="fragment" src="./figures/opt-happiness.png">
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Peace of mind</h3>
+<p>The main difference is that mathematical optimization gives you a guarantee.</p>
+<img src="./figures/meditation.svg" width="300">
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>But …</h3>
+<ul>
+<li>Formulation is not always possible</li>
+<li>Unfeasibility</li>
+<li><a href="https://en.wikipedia.org/wiki/Computational_complexity_theory#Intractability">Intractability</a></li>
+<li>Optimal … but not quite
+<ul>
+<li>Locally optimal</li>
+<li>Nearly optimal</li>
+<li>Optimal for a proxy</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Examples of optimization</h3>
+<aside class="notes">
+Pappus of Alexandria (325-265 BC) argued that the hexagon in honeycomb is the optimal regular polygon for storing honey; its hexagonal structure uses the least material to create a lattice of cells over a plane.
+</aside>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Honeycomb_conjecture">Nature 🐝</a></li>
+<li><a href="https://jump.dev/JuMP.jl/stable/tutorials/linear/knapsack/">Packing your car trunk</a> 🚗</li>
+<li>Training a Machine Learning model 🐶🐱</li>
+<li>Structural design 🚲, 🚀, 🛬</li>
+<li><a href="https://jump.dev/JuMP.jl/stable/tutorials/linear/sudoku/">Solving a Sudoku</a> 🔢</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Outline</h2>
+<ul>
+<li>Intro</li>
+<li>Pen and paper optimization</li>
+<li class="fragment grow">Algebraic modeling languages</li>
+<li>Outro
+<ul>
+<li>A teaser of a different topic</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <section data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">
+  <h2>Intro</h2>
+</section>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <section data-background-image="https://upload.wikimedia.org/wikipedia/commons/4/47/Cordage_en_chanvre.jpg">
+</section>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <img src="./figures/isoperimetric-rectangles.svg" width="800">
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <img src="./figures/isoperimetric-figures.svg" width="700">
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Isoperimetric problem</h3>
+<p>What is the <span style="color: red;">maximum</span>  area that can be bounded with a curve of fixed length $L$?</p>
+<p class="fragment fade-in-then-semi-out">$$
+A \le \frac{L^{2}}{4\pi}
+$$</p>
+<p class="fragment fade-in-then-semi-out">$$
+A = \frac{L^{2}}{4\pi}?
+$$</p>
+<p class="fragment fade-in-then-semi-out">$$
+\iff A_{\bullet} = \frac{L_{\circ} ^{2}}{4\pi}
+$$</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Dido (~814 BC)</h3>
+<p>Queen of Carthāgō</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/10_TND_-_2005_-_obverse.jpg" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Dido’s Carthāgō</h3>
+<img src="./figures/dido.drawio.png" width="500">
+<p><a href="https://brilliantmaps.com/roman-carthage/" style="font-size:20px">Source map: brilliantmaps.com</a></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Rewriting history</h3>
+<p>Let’s do some counterfactual reasoning:</p>
+<p>What would have Dido do had the king impossed the <span style="color: red;">constraint</span> that the shape had to be rectangular?</p>
+<div class="r-stack">
+  <img width="600" class="fragment fade-in-then-out" src="./figures/carthago_circ.svg">
+  <img width="600" class="fragment" src="./figures/carthago_rect.svg">
+</div> 
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Usa.svg/1600px-Usa.svg.png?20061020165438" alt="us"></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>Given a rectangle with perimeter $L$, what’s the relation between $\ell$ and $w$ that yields the maximum area?</p>
+<img width="600" src="./figures/rectangles.svg">
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>$$
+\begin{aligned}
+&amp;  \max_{\ell, w} &amp; &amp; \ell w \\
+&amp; \text{subject to} &amp;  &amp; 2\ell + 2w = L
+\end{aligned}
+$$</p>
+<p class="fragment" fade-in="">Euclid (~300 BC) found that the relation that yields the <span style="color: red;">maximum</span>  area is $w = \ell$, i.e.,
+a square.</p>
+<img src="./figures/euclid.png" width=120px>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <section data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">
+  <h2>Pen and paper optimization</h2>
+</section>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Counterfactual  Carthāgō</h3>
+<p class="fragment fade-in-then-semi-out">$$
+\begin{aligned}
+&amp;  \max_{\ell, w} &amp; &amp; \ell w \\
+&amp; \text{s.t.} &amp;  &amp; 2\ell + 2w = L
+\end{aligned}
+$$</p>
+<p class="fragment fade-in-then-semi-out">$$
+\ell = \frac{L}{2}- w
+$$</p>
+<p class="fragment fade-in">$$
+\begin{aligned}
+&amp;  \max_{w} &amp; &amp; -w^2 + \frac{L}{2}w \\
+\end{aligned}
+$$</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>Optimization</p>
+<p>$f(w)=-w^2 + \frac{L}{2} w$</p>
+<p><img src="./figures/x2_1.svg" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>Optimization $\to$ calculus $\to$ derivatives</p>
+<p>$f(w)=-w^2 + \frac{L}{2} w$</p>
+<p><img src="./figures/x2_2.svg" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>$$
+\begin{aligned}
+&amp;  \max_{w} &amp; &amp; -w^2 + \frac{L}{2}w \\
+\end{aligned}
+$$</p>
+<p class="fragment fade-in-then-semi-out">$$
+\frac{df}{dw} = -2w + \frac{L}{2} = 0
+$$</p>
+<p class="fragment fade-in-then-semi-out">$$
+L =  4w
+$$</p>
+<p class="fragment fade-in-then-semi-out">$$
+2w + 2\ell = L = 4w
+$$</p>
+<p class="fragment fade-in-then-semi-out">$$
+w = \ell \quad \blacksquare
+$$</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <section data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">
+  <h2>Algebraic modeling languages</h2>
+</section>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Problem modeling strategy</h3>
+<p><img src="./figures/algebraic_all.svg" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Know thy solver</h3>
+<p><img src="./figures/algebraic_solver.svg" alt=""></p>
+<ul>
+<li>Options</li>
+<li>Methods (algorithms)</li>
+<li>Class of supported problems (LP, NLP, mixed integer, etc.)</li>
+<li>Local or global</li>
+</ul>
+<!-- ---
+
+![](https://mit-press-us.imgix.net/covers/9780262039420.jpg?auto=format&w=298&dpr=1&q=20)
+
+[Algorithms for Optimization](https://mitpress.mit.edu/9780262039420/algorithms-for-optimization/) -->
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Algebraic modeling languages</h3>
+<p><img src="./figures/algebraic_aml.svg" alt=""></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/AMPL">AMPL</a></li>
+<li><a href="https://en.wikipedia.org/wiki/General_algebraic_modeling_system">GAMS</a></li>
+<li><a href="https://en.wikipedia.org/wiki/GNU_Linear_Programming_Kit">GLPK</a></li>
+<li>Sub-languages of Generic Programing Languages
+<ul>
+<li>Pyomo for Python</li>
+<li class="fragment highlight-green">JuMP (Julia for Mathematical Programming)</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <!-- <section data-background-color="#F0F8FF"> -->
+<section data-background-gradient="radial-gradient(#2E8B57, #DDA0DD)">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Julia_Programming_Language_Logo.svg/2560px-Julia_Programming_Language_Logo.svg.png" width="150px"> 
+<p>$\mathbf{Q} = \mathbf{Q} - \frac{\mathbf{Q\gamma \gamma^{T} Q}}{\mathbf{\gamma^{T}Q\gamma}} + \frac{\mathbf{\delta \delta^{T}}}{ \mathbf{\delta^{T} \gamma}}$</p>
+<pre class="python"><code>
+Q = Q - (Q @ gamma @ gamma.T @ Q)/(gamma.T @ Q @ gamma)\
+  + (delta @ delta.T)/(delta.T @ gamma)
+</code></pre>
+<pre class="julia"><code class="fragment fade-in">
+Q = Q - Q*γ*γ'*Q / (γ'*Q*γ) + δδ' / (δ'γ)
+</code></pre>
+<div class="r-stack">
+<pre class="julia"><code class="fragment">
+function euclid(α, β)
+	return √(α^2 + β^2)
+end
+
+euclid(3, 4)
+5
+</code></pre>
+<pre class="julia"><code class="fragment">
+function 🦄(α, β)
+	return √(α^2 + β^2)
+end
+
+🦄(3, 4)
+5
+</code></pre>
+</div>
+<pre class="bash"><code class="fragment">
+# A bit off-topic ...
+[Mojo]   hello.🔥
+</code></pre>
+</section>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>$$
+\begin{aligned}
+&amp;  \max_{\ell, w} &amp; &amp; \ell w \\
+&amp; \text{subject to} &amp;  &amp; 2w + 2\ell = L
+\end{aligned}
+$$</p>
+<pre class="jump"><code class="fragment fade-in" data-line-numbers="1-2|3|4">@variable(model, w  >= 0)
+@variable(model, ℓ  >= 0)
+@objective(model, Max, ℓ*w)
+@constraint(model, 2w + 2ℓ == L)
+</code></pre>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Some examples of JuMP</h3>
+<ul>
+<li><a href="./notebooks/carthago.ipynb">Counterfactual Carthāgō</a></li>
+<li><a href="./notebooks/n_queens.ipynb">Constraint satisfaction</a></li>
+<li><a href="./notebooks/passport.ipynb">Traveling around the world</a></li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>The no so happy path</h3>
+<ul>
+<li>Formulation is not always possible</li>
+<li>Unfeasibility</li>
+<li><a href="https://en.wikipedia.org/wiki/Computational_complexity_theory#Intractability">Intractability</a></li>
+<li>Optimal … but not quite
+<ul>
+<li>Locally optimal</li>
+<li>Nearly optimal</li>
+<li>Optimal for a proxy</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Sight Beyond Sight</h3>
+<img src="./figures/jf.jpeg" width="400">
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <section data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">
+<h2>Conclusions</h2>
+</section>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <section data-background-image="./figures/coffee.jpg">
+<h1>Thank you!</h1>
+</section>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <section data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">
+<h2>Teaser</h2>
+</section>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>PPLs</h3>
+<!-- ---
+
+<img src="./figures/scooby-ml-opt.png" width="400"> -->
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p><strong>Linear Regression</strong> $\to$ Least Squares [<a href="https://en.wikipedia.org/wiki/Least_squares">R1</a>] [<a href="https://www.deeplearningbook.org/">R2</a>]</p>
+<p><img src="./figures/ltsq1.svg" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>$$
+\begin{align*}
+&amp; \min_{\color{red}{\mathbf{\beta}}} &amp; &amp; \sum_{i=1} ^{n} \big(y_i - f(x_i, \mathbf{\beta})\big)^2
+\end{align*}
+$$</p>
+<p><img src="./figures/ltsq3.svg" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <img src="./figures/scooby-ml-stats.png" width="400">
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>In data veritas?</h3>
+<ul>
+<li>Expediency</li>
+<li>Explainability</li>
+<li>Transparency</li>
+<li>Associations-only machine $\to$ causal analysis is not possible.
+<ul>
+<li>Examples:
+<ul>
+<li>Determining if global warming is due to human activity</li>
+<li>Establishing the link between smoking and cancer</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>$$
+\begin{align*}
+&amp; \min_{\color{red}{\mathbf{\beta}}} &amp; &amp; \sum_{i=1} ^{n} \big(y_i - f(x_i, \mathbf{\beta})\big)^2
+\end{align*}
+$$</p>
+<p>$$
+\begin{align*}
+\color{red}{\mathbf{\beta}} &amp;= (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top}\mathbf{y}
+\end{align*}
+$$</p>
+<p>$$
+\begin{align*}
+\color{red}{\beta_0} &amp;= 113.88 \\
+\color{red}{\beta_1} &amp;= 0.9 \\
+\end{align*}
+$$</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/10_DM_Serie4_Vorderseite.jpg" alt="Gauss"></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Bayesian analysis</h3>
+<p>$$
+\text{Posterior} = \frac{\text{Probability of the data} \times \text{Prior}}{\text{Average probability of the data}}
+$$</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p class="fragment fade-up">$$
+\begin{align*}
+\beta_0 &amp; \sim \text{Normal}(178, 20)\\
+\beta_1 &amp; \sim  \text{Log-Normal}(0,1)\\
+\sigma &amp; \sim  \text{Uniform}(0, 50)\\
+\end{align*}
+$$</p>
+<p>$$
+\begin{align*}
+\mu_i &amp; =  \beta_0 + \beta_1 (x_i - \bar{x})\\
+\text{height} &amp; \sim  \text{Normal} (\mu_i, \sigma)\\
+\end{align*}
+$$</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>Distribution of $\color{red}{\beta_1}$</p>
+<p><img src="./figures/ltsq_beta1_post.svg" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p><img src="./figures/ltsq_uncertainty.svg" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Probabilistic programming languages</h3>
+<pre class="python"><code>
+def model(weight, height):
+    b0 = numpyro.sample("b0", dist.Normal(178, 20))
+    b1 = numpyro.sample("b1", dist.LogNormal(0, 1))
+    sigma = numpyro.sample("sigma", dist.Uniform(0, 50))
+    mu = b0 + b1 * (weight - jnp.mean(weight))
+    numpyro.sample("height", dist.Normal(mu, sigma), obs=height)
+</code></pre>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p><img src="https://xcelab.net/rm/wp-content/uploads/2019/12/sr2edcover-1-187x300.png" alt=""></p>
+<p><a href="https://xcelab.net/rm/statistical-rethinking/">Statistical Rethinking</a></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <section data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">
+<h2>Extra</h2>
+</section>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>Critical points, multiple minima</p>
+<p><img src="./figures/critical_points1.svg" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>Constrained optimization $\to$ $\chi \in [a,b]$</p>
+<p><img src="./figures/critical_points3.svg" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>$ \max \quad f(x) \equiv \min \quad -f(x)$</p>
+<p><img src="./figures/critical_points2.svg" alt=""></p>
+<hr>
+
+            </section>
+    
+
+
+    </div>
+
+
+  </div>
+
+  <div class="line top"></div>
+  <div class="line bottom"></div>
+  <div class="line left"></div>
+  <div class="line right"></div>
+
+  <script src="libs/reveal.js/4.3.1/reveal.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/notes/notes.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/markdown/markdown.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/highlight/highlight.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/fullscreen/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/svg.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/Chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/d3.v3.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3.patch.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/queue.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/topojson.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/function-plot.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/customcontrols/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/embed-tweet/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/verticator/verticator.js"></script>
+
+<script src="libs/reveal.js/4.3.1/plugin/zoom/zoom.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/search/search.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/menu/menu.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chalkboard/plugin.js"></script>
+
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/plugin.js"></script>  -->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/recorder.js"></script>-->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/RecordRTC.js"></script>-->
+
+  
+
+<script>
+  const printPlugins = [
+      RevealNotes,
+      RevealHighlight,
+      RevealMath.MathJax3,
+      RevealAnimate,
+      RevealChalkboard, 
+			RevealEmbedTweet,
+			RevealChart,
+		];
+
+		const plugins =  [...printPlugins,
+		RevealZoom, 
+		RevealSearch, 
+				RevealMarkdown, 
+				RevealMenu, 
+				RevealFullscreen,
+				RevealAnything,
+				//RevealAudioSlideshow,
+				//RevealAudioRecorder,
+				RevealCustomControls, 
+				// poll
+				// question
+				// seminar
+				Verticator 
+				 ]
+
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+      controlsTutorial: true,
+      controlsLayout: 'bottom-right',
+      controlsBackArrows: 'faded',
+      progress: true,
+      slideNumber: false,
+      //#showSlideNumber "all" "print" "speaker"
+      hash: true, //# hash: false,
+      //# respondToHashChanges: true,
+      //# history: false,
+      keyboard: true,
+      //#keyboardCondition: null,
+      overview: true,
+      center: true,
+      touch: true,
+      loop: false,
+      rtl: false,
+      //#navigationMode: 'default', linear grid
+      shuffle: false,
+      fragments: true,
+      fragmentInURL: false,
+      embedded: false,
+      help: true,
+      //#pause: true
+      showNotes: false,
+      autoPlayMedia: false, // TODO fix this to a nullable value
+      //#preloadIframes: null. true false
+      //#autoAnimate: true
+      //#autoAnimateMatcher: null,
+      //#autoAnimateEasing: 'ease',
+      //autoAnimateDuration: 1.0,
+      //#autoAnimateUnmatched: true
+      //#autoAnimateStyles: []
+      autoSlide: 0, // TODO fix this to a falseable value
+      autoSlideStoppable: true,
+      autoSlideMethod: '0',
+      defaultTiming: 120,
+      mouseWheel: false,
+      //#previewLinks: false
+      //#postMessage: true, // TODO : this can cause issues with the vscode api ???
+      //#postMessageEvents: false,
+      //#focusBodyOnPageVisibilityChange: true,
+      transition: 'none',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      //#pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+      //#pdfSeparateFragments: true,
+      //#pdfPageHeightOffset: -1,
+      viewDistance: 3,
+      //#mobileViewDistance: 2,
+      display: 'block',
+      //#hideInactiveCursor: true,
+      //#hideCursorTime: 5000
+
+      // Parallax Background
+      parallaxBackgroundImage: '',
+      parallaxBackgroundSize: '',
+      parallaxBackgroundHorizontal: 0,
+      parallaxBackgroundVertical: 0,
+
+      //Presentation Size
+      width: 960,
+			height: 700,
+			margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2,
+      disableLayout: false,
+
+      audio: {
+        prefix: 'audio/', // audio files are stored in the "audio" folder
+        suffix: '.ogg', // audio files have the ".ogg" ending
+        textToSpeechURL: null, // the URL to the text to speech converter
+        defaultNotes: false, // use slide notes as default for the text to speech converter
+        defaultText: false, // use slide text as default for the text to speech converter
+        advance: 0, // advance to next slide after given time in milliseconds after audio has played, use negative value to not advance
+        autoplay: false, // automatically start slideshow
+        defaultDuration: 5, // default duration in seconds if no audio is available
+        defaultAudios: true, // try to play audios with names such as audio/1.2.ogg
+        playerOpacity: 0.05, // opacity value of audio player if unfocused
+        playerStyle: 'position: fixed; bottom: 4px; left: 25%; width: 50%; height:75px; z-index: 33;', // style used for container of audio controls
+        startAtFragment: false, // when moving to a slide, start at the current fragment or at the start of the slide
+      },
+      
+      chalkboard: { // font-awesome.min.css must be available
+        //src: "chalkboard/chalkboard.json",
+        storage: "chalkboard-demo",
+      },
+      
+			customcontrols: {
+					controls: [
+      						{
+						  id: 'toggle-overview',
+						  title: 'Toggle overview (O)',
+						  icon: '<i class="fa fa-th"></i>',
+						  action: 'Reveal.toggleOverview();'
+						}
+						,
+      {
+        icon: '<i class="fa fa-pen-square"></i>',
+        title: 'Toggle chalkboard (B)',
+        action: 'RevealChalkboard.toggleChalkboard();'
+      },
+      {
+        icon: '<i class="fa fa-pen"></i>',
+        title: 'Toggle notes canvas (C)',
+        action: 'RevealChalkboard.toggleNotesCanvas();'
+      }
+      
+				]
+			},
+			chart: {
+					defaults: { 
+						color: 'lightgray', // color of labels
+						scale: { 
+							beginAtZero: true, 
+							ticks: { stepSize: 1 },
+							grid: { color: "lightgray" } , // color of grid lines
+						},
+					},
+					line: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ], "borderDash": [ [5,10], [0,0] ] }, 
+					bar: { backgroundColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+					pie: { backgroundColor: [ ["rgba(0,0,0,.8)" , "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"] ]},
+					radar: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+			},
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: { Macros: { RR: "{\\bf R}" } }
+				},
+				anything: [ 
+				{
+		className: "plot",
+		defaults: {width:500, height: 500, grid:true},
+		initialize: (function(container, options){ options.target = "#"+container.id; functionPlot(options) })
+	 },
+	 {
+		className: "chart",  
+		initialize: (function(container, options){ container.chart = new Chart(container.getContext("2d"), options);  })
+	 },
+	 {
+		className: "anything",
+		initialize: (function(container, options){ if (options && options.initialize) { options.initialize(container)} })
+	 },
+					],
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: (window.location.search.match(/print-pdf/gi) ? printPlugins : plugins ) 
+		});
+			
+
+
+	    // Change chalkboard theme : 
+		function changeTheme(input) {
+			var config = {};
+			config.theme = input.value;
+			Reveal.getPlugin("RevealChalkboard").configure(config);
+			input.blur();
+		}
+
+		// // Handle the message inside the webview
+        // window.addEventListener('message', event => {
+
+        //     const message = event.data; // The JSON data our extension sent
+
+        //     switch (message.command) {
+        //         case 'refactor':
+        //             Reveal.toggleHelp();
+        //     }
+        // });
+
+		if (window.location.search.match(/print-pdf-now/gi)) {
+      		setTimeout(() => {
+				window.print();
+			  }, 2500);
+			
+    }
+</script>
+
+</body>
+
+</html>
